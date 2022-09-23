@@ -56,7 +56,7 @@ ChatFormコンポーネントは，onFormSubmitメソッドを受け取り，inp
 const App = () => {
     const log = React.useRef();  // (a)
     const m = new madoi.Madoi("chat-lbnsek2w");  // (b)
-    const addMessage = m.registerFunction((name, message)=>{  // (c)
+    const addLog = m.registerFunction((name, message)=>{  // (c)
         const p = document.createElement("div");
         ReactDOM.createRoot(p).render(
             <div><b>{name}</b>: <span>{message}</span></div>
@@ -65,7 +65,7 @@ const App = () => {
     }, {maxLog: 1000});
     return (
         <div>
-            <ChatForm onFormSubmit={addMessage} />  // (d)
+            <ChatForm onFormSubmit={addLog} />  // (d)
             <div ref={log} id="chatLogDiv">  // (e)
             </div>
         </div>
@@ -84,11 +84,11 @@ sequenceDiagram
     participant c1 as Client1
     participant s as Madoi Server
     participant c2 as Client2
-    c1->>c1: "addMessage"呼び出し
-    c1->>s: "addMessage"が呼び出された
-    s->>c1: "addMessage"が呼び出された
+    c1->>c1: "addLog"呼び出し
+    c1->>s: "addLog"が呼び出された
+    s->>c1: "addLog"が呼び出された
     c1->>c1: ログ追加処理((c)で渡された関数)実行
-    s->>c2: "addMessage"が呼び出された
+    s->>c2: "addLog"が呼び出された
     c2->>c2: ログ追加処理((c)で渡された関数)実行
 ```
 
@@ -101,13 +101,13 @@ sequenceDiagram
     participant s as Madoi Server
     participant c2 as Client2
     participant c3 as Client3
-    c1->>c1: "addMessage"呼び出し
-    c1->>s: "addMessage"が呼び出された
-    s->>c1: "addMessage"が呼び出された
-    s->>c2: "addMessage"が呼び出された
+    c1->>c1: "addLog"呼び出し
+    c1->>s: "addLog"が呼び出された
+    s->>c1: "addLog"が呼び出された
+    s->>c2: "addLog"が呼び出された
     c1->>c1: ログ追加処理((c)で渡された関数)実行
     c2->>c2: ログ追加処理((c)で渡された関数)実行
     c3->>s: 参加
-    s->>c3: "addMessage"が呼び出された
+    s->>c3: "addLog"が呼び出された
     c3->>c3: ログ追加処理((c)で渡された関数)実行
 ```

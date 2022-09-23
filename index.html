@@ -51,7 +51,7 @@ const ChatForm = ({onFormSubmit})=>{
 const App = () => {
     const log = React.useRef();
     const m = new madoi.Madoi("chat-lbnsek2w");
-    const addMessage = m.registerFunction((name, message)=>{
+    const addLog = m.registerFunction((name, message)=>{
         const p = document.createElement("div");
         ReactDOM.createRoot(p).render(
             <div><b>{name}</b>: <span>{message}</span></div>
@@ -60,7 +60,7 @@ const App = () => {
     }, {maxLog: 1000});
     return (
         <div>
-            <ChatForm onFormSubmit={addMessage} />
+            <ChatForm onFormSubmit={addLog} />
             <div ref={log} id="chatLogDiv">
             </div>
         </div>
